@@ -1,1 +1,1 @@
-intializing a git repo
+assignment project for Swissmote Inc
