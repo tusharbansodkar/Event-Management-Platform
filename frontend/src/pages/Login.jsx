@@ -9,22 +9,32 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   //dummy authentication replace with API call
+  //   if (email === "test@test.com" && password === "password") {
+  //     login({ email, token: "dummy-jwt-token" });
+  //     console.log(email, password);
+  //     navigate("/dashboard");
+  //   } else {
+  //     alert("Invalid credentials!");
+  //   }
+  // };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    //dummy authentication replace with API call
-    if (email === "test@test.com" && password === "password") {
-      login({ email, token: "dummy-jwt-token" });
-      console.log(email, password);
-      navigate("/dashboard");
-    } else {
-      alert("Invalid credentials!");
+    try {
+      await login(email, password);
+      navigate("/dashboard"); // Redirect on success
+    } catch (error) {
+      alert("Login failed: " + error.response?.data?.message);
     }
   };
 
   return (
     <Container maxWidth="xs">
       <Typography variant="h5">Login</Typography>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <TextField
           fullWidth
           label="Email"
@@ -43,6 +53,9 @@ const Login = () => {
         <Button fullWidth variant="contained" type="submit">
           Login
         </Button>
+        <p>
+          Dont have an account? <a href="/signup">Sign up here</a>
+        </p>
       </form>
     </Container>
   );
