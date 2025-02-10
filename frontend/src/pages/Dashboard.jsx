@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import {
   Typography,
   Drawer,
@@ -38,10 +38,10 @@ const Dashboard = () => {
         <ListItem button onClick={() => navigate("/")}>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button onClick={() => navigate("/my-events")}>
+        <ListItem button onClick={() => navigate("/dasboard/my-events")}>
           <ListItemText primary="My Events" />
         </ListItem>
-        <ListItem button onClick={() => navigate("/create-event")}>
+        <ListItem button onClick={() => navigate("/dashboard/create-event")}>
           <ListItemText primary="Create Event" />
         </ListItem>
       </List>
@@ -102,8 +102,7 @@ const Dashboard = () => {
         component="main"
         sx={{ flexGrow: 1, p: 3, ml: isMobile ? 0 : `${drawerWidth}px`, mt: 8 }}
       >
-        <Typography variant="h5">Dashboard</Typography>
-        <Typography variant="body1">Manage your events here.</Typography>
+        <Outlet />
       </Box>
     </Box>
   );

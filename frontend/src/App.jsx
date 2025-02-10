@@ -7,11 +7,12 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import "./App.css";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import CreateEvent from "./pages/CreateEvent";
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
@@ -33,7 +34,9 @@ function App() {
               <Dashboard />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route path="create-event" element={<CreateEvent />} />
+        </Route>
       </Routes>
     </Router>
   );
