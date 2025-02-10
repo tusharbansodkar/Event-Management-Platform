@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
+const eventRoutes = require("./routes/events");
 
 const app = express();
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/api/auth", authRoutes);
+app.use("/api/eventRoutes", eventRoutes);
 
 // Connect to MongoDB
 mongoose

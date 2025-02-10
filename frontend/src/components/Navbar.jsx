@@ -7,7 +7,7 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar>
         <Typography variant="h5" sx={{ flexGrow: 1 }}>
           {user ? "Welcome, " + user?.email : "Event Management"}
