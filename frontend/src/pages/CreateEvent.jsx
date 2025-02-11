@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { TextField, Button, Box, Typography, MenuItem } from "@mui/material";
+import axios from "axios";
 
 const CreateEvent = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const CreateEvent = () => {
     location: "",
     eventType: "public", // Default: Public event
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setEventData({ ...eventData, [e.target.name]: e.target.value });
@@ -19,8 +21,17 @@ const CreateEvent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Event Data:", eventData);
-    // Later, send this data to the backend (we'll implement API integration)
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/eventRoutes",
+        eventData
+      );
+      alert(response.data?.message);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message || "Something went wrong.");
+      alert(error);
+    }
   };
 
   return (
